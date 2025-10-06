@@ -17,9 +17,15 @@ class Settings(BaseModel):
     # Default to local SQLite database in project root for development
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./recipes.db")
     ENV: str = os.getenv("ENV", "development")
-    # Placeholder for future secrets (JWT, etc.)
-    # JWT_SECRET_KEY: str | None = os.getenv("JWT_SECRET_KEY")
-    # JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
+
+    # JWT and security related
+    JWT_SECRET_KEY: str | None = os.getenv("JWT_SECRET_KEY")
+    JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("JWT_ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
+
+    # CORS
+    FRONTEND_ORIGIN: str | None = os.getenv("FRONTEND_ORIGIN")
+    SITE_URL: str | None = os.getenv("SITE_URL")
 
 
 # PUBLIC_INTERFACE
